@@ -1,0 +1,3 @@
+fin_finance_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: FinFinanceBundle:Default:index }

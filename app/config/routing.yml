@@ -1,0 +1,7 @@
+fin_finance:
+    resource: "@FinFinanceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
