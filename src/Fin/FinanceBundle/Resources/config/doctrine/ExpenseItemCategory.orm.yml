@@ -1,0 +1,18 @@
+Fin\FinanceBundle\Entity\ExpenseItemCategory:
+    type: entity
+    repositoryClass: Fin\FinanceBundle\Repository\ExpenseItemCategoryRepository
+    table: expense_item_category
+    id:
+        id:
+            type: integer
+            generator: {strategy: AUTO}
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+    oneToMany:
+        expense_item:
+            targetEntity: ExpenseItem
+            mappedBy: expense_item_category
+        

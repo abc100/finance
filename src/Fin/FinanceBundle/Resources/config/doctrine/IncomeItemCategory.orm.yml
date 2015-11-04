@@ -1,0 +1,18 @@
+Fin\FinanceBundle\Entity\IncomeItemCategory:
+    type: entity
+    repositoryClass: Fin\FinanceBundle\Repository\IncomeItemCategoryRepository
+    table: income_item_category
+    id:
+        id:
+            type: integer
+            generator: {strategy: AUTO}
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+    oneToMany:
+        expense_item:
+            targetEntity: IncomeItem
+            mappedBy: income_item_category
+        

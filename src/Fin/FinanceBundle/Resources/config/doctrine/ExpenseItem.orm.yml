@@ -1,0 +1,21 @@
+Fin\FinanceBundle\Entity\ExpenseItem:
+    type: entity
+    repositoryClass: Fin\FinanceBundle\Repository\ExpenseItemRepository
+    table: expense_item
+    id:
+        id:
+            type: integer
+            generator: {strategy: AUTO}
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+    manyToOne:
+        expense_item_category:
+            targetEntity: ExpenseItemCategory
+            inversedBy: expense_item
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+        

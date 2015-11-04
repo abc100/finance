@@ -1,0 +1,36 @@
+Fin\FinanceBundle\Entity\Income:
+    type: entity
+    repositoryClass: Fin\FinanceBundle\Repository\IncomeRepository
+    table: income
+    id:
+        id:
+            type: integer
+            generator: {strategy: AUTO}
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+        sum:
+            type: decimal
+            precision: 10
+            scale: 2
+        description:
+            type: text
+            nullable: true
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+            nullable: true
+    manyToOne:
+        expense_item:
+            targetEntity: IncomeItem
+            inversedBy: income
+            joinColumn:
+                name: item_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [setCreatedAtValue]
+        preUpdate: [setUpdatedAtValue]
+        
