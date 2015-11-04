@@ -97,4 +97,8 @@ class ExpenseItemCategory
     {
         return $this->expense_item;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
 }

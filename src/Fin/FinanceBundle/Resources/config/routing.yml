@@ -1,3 +1,7 @@
+fin_finance_fin_expense:
+    resource: "@FinFinanceBundle/Resources/config/routing/expense.yml"
+    prefix:   /fin_expense
+
 fin_finance_homepage:
     path:     /hello/{name}
     defaults: { _controller: FinFinanceBundle:Default:index }
