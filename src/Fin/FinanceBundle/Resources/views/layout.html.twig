@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        Finance
+      {% endblock %}
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{{ asset('bundles/finfinance/bootstrap-3.3.2/css/bootstrap.min.css') }}" type="text/css" media="all" />
+    {% block stylesheets %}
+    {% endblock %}
+    <script src="{{ asset('bundles/finfinance/js/jquery-2.1.4.min.js') }}"></script>    
+    {% block javascripts %}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div class="content">
+          <h1><a href="{{ path('fin_expense') }}">
+            <img src="" alt="" />
+          </a></h1>
+ 
+          <div id="sub_header">
+            <div class="post">
+              <h2>Ask for people</h2>
+              <div>
+                <a href="{{ path('fin_expense') }}">Expense</a>
+              </div>
+            </div>
+ 
+            <div class="search">
+              <h2>Search for a expense</h2>
+              <form action="" method="get">
+                <input type="text" name="keywords" id="search_keywords" />
+                <input type="submit" value="search" />
+                <div class="help">
+                  Enter some keywords (category, item, ...)
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div id="content">
+        {% if app.session.flashbag.has('notice') %}
+          <div class="flash_notice">
+            {{ app.session.flashbag.get('notice') }}
+          </div>            
+        {% endif %}
+
+        {% if app.session.flashbag.has('error') %}
+          <div class="flash_error">
+            {{ app.session.flashbag.get('error') }}
+          </div>            
+        {% endif %}
+ 
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+      </div>
+ 
+      <div id="footer">
+        <div class="content">
+          <span class="symfony">
+            <img src="" />
+            powered by <a href="">
+              <img src=" alt="" />
+            </a>
+          </span>
+          <ul>
+            <li><a href="">About Finance</a></li>
+            <li class="feed"><a href="">Full feed</a></li>
+            <li><a href="">Finance API</a></li>
+            <li class="last"><a href="">Affiliates</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
