@@ -1,16 +1,16 @@
 {% extends 'FinFinanceBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1>Expense edit</h1>
+    <h2 class="sub-header">Expense Details</h2>
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('fin_expense') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('fin_expense') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
 {% endblock %}
