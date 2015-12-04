@@ -10,4 +10,23 @@ namespace Fin\FinanceBundle\Repository;
  */
 class ExpenseRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getExpenses($max = null, $offset = null)
+    {
+      $qb = $this->createQueryBuilder('e')
+        ->orderBy('e.created_at', 'DESC');
+
+      if($max)
+      {
+        $qb->setMaxResults($max);
+      }
+
+      if($offset)
+      {
+        $qb->setFirstResult($offset);
+      }
+
+      $query = $qb->getQuery();
+
+      return $query->getResult();
+    }
 }

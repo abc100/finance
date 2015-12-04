@@ -1,6 +1,6 @@
 fin_expense:
-    path:     /
-    defaults: { _controller: "FinFinanceBundle:Expense:index" }
+    path:     /{page}
+    defaults: { _controller: "FinFinanceBundle:Expense:index", page: 1 }
 
 fin_expense_show:
     path:     /{id}/show

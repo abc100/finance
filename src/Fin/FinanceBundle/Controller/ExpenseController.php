@@ -19,14 +19,29 @@ class ExpenseController extends Controller
      * Lists all Expense entities.
      *
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('FinFinanceBundle:Expense')->findAll();
+//        $entities = $em->getRepository('FinFinanceBundle:Expense')->findAll();
+        
+        $entities = $em->getRepository('FinFinanceBundle:Expense')->getExpenses();
+                
+        $total_count = $em->getRepository('FinFinanceBundle:Expense')->getExpenses();
+        $per_page = $this->container->getParameter('max_items_on_page');
+        $last_page = ceil($total_count / $per_page);
+        $previous_page = $page > 1 ? $page - 1 : 1;
+        $next_page = $page < $last_page ? $page + 1 : $last_page;
+
+//        $category->setActiveJobs($em->getRepository('FinFinanceBundle:Job')->getExpenses($per_page, ($page - 1) * $per_page));
 
         return $this->render('FinFinanceBundle:Expense:index.html.twig', array(
-            'entities' => $entities,
+          'entities' => $entities,
+          'last_page' => $last_page,
+          'previous_page' => $previous_page,
+          'current_page' => $page,
+          'next_page' => $next_page,
+          'total_count' => $total_count
         ));
     }
     /**
