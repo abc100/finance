@@ -1,7 +1,14 @@
 {% extends 'FinFinanceBundle::layout.html.twig' %}
 
 {% block content %}
-    <h2 class="sub-header">Expense List</h2>
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="sub-header">Expense List</h2>
+        </div>
+        <div class="col-md-3">
+            <a href="{{ path('fin_expense_new') }}" class="btn btn-lg btn-default pull-right m-t-15" target="_blank">Create a new entry</a>
+        </div>
+    </div>   
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -9,42 +16,27 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Sum</th>
-                    <th>Description</th>
-                    <th>Created_at</th>
-                    <th>Updated_at</th>
-                    <th>Actions</th>
+                    <th width="50%">Description</th>
+                    <th>Created At</th>
+{#                    <th>Updated At</th>#}
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('fin_expense_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.id }}</td>
+                    <td><a href="{{ path('fin_expense_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                     <td>{{ entity.sum }}</td>
                     <td>{{ entity.description }}</td>
                     <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+{#                    <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('fin_expense_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('fin_expense_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        {%include 'FinFinanceBundle:Common:actions.html.twig' with {'entity': entity} %}
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-    
-    <ul>
-        <li>
-            <a href="{{ path('fin_expense_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
 {% endblock %}

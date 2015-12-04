@@ -1,0 +1,15 @@
+<div class="dropdown details-dropdown pull-right m-r-0">
+    <button class="btn btn-default dropdown-toggle" type="button" id="moreActionsMenu"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        More Actions
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="moreActionsMenu">
+        <li>
+            <a href="{{ path('fin_expense_show', { 'id': entity.id }) }}" target="_blank">Details</a>
+        </li>
+        <li>
+            <a href="{{ path('fin_expense_edit', { 'id': entity.id }) }}" target="_blank">Edit</a>
+        </li>    
+    </ul>
+</div>
