@@ -1,11 +1,3 @@
-fin_expense:
-    path:     /{page}
-    defaults: { _controller: "FinFinanceBundle:Expense:index", page: 1 }
-
-fin_expense_show:
-    path:     /{id}/show
-    defaults: { _controller: "FinFinanceBundle:Expense:show" }
-
 fin_expense_new:
     path:     /new
     defaults: { _controller: "FinFinanceBundle:Expense:new" }
@@ -14,6 +6,14 @@ fin_expense_create:
     path:     /create
     defaults: { _controller: "FinFinanceBundle:Expense:create" }
     methods:  POST
+    
+fin_expense:
+    path:     /{page}
+    defaults: { _controller: "FinFinanceBundle:Expense:index", page: 1 }
+
+fin_expense_show:
+    path:     /{id}/show
+    defaults: { _controller: "FinFinanceBundle:Expense:show" }
 
 fin_expense_edit:
     path:     /{id}/edit
