@@ -10,23 +10,39 @@ namespace Fin\FinanceBundle\Repository;
  */
 class ExpenseRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getExpenses($max = null, $offset = null)
+    public function getExpenses($page = 1, $per_page, $count_only = false)
     {
-      $qb = $this->createQueryBuilder('e')
-        ->orderBy('e.created_at', 'DESC');
+        $qb = $this->createQueryBuilder('e');      
+      
+        $query = $qb->getQuery();
+        $items = $query->getResult();
+        $total_count = count($items);
+//        $total_count = $query->getSingleScalarResult();
 
-      if($max)
-      {
-        $qb->setMaxResults($max);
-      }
+        if ($count_only) {
+            return $total_count;
+        }
 
-      if($offset)
-      {
-        $qb->setFirstResult($offset);
-      }
+        $qb->orderBy('e.created_at', 'asc');
 
-      $query = $qb->getQuery();
+        if (ceil($total_count / $per_page) < $page) {
+            $page = ceil($total_count / $per_page) == 0 ? 1 : ceil($total_count / $per_page);
+        }
 
-      return $query->getResult();
+        $offset = ($page - 1) * $per_page;
+
+        if($per_page)
+        {
+          $qb->setMaxResults($per_page);
+        }
+        if($offset)
+        {
+          $qb->setFirstResult($offset);
+        }
+
+        $query = $qb->getQuery();
+        $items = $query->getResult();
+
+        return array('total_count' => $total_count, 'items' => $items);
     }
 }

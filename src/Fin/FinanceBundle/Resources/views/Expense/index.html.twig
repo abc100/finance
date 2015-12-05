@@ -16,7 +16,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Sum</th>
-                    <th width="50%">Description</th>
+                    <th width="40%">Description</th>
                     <th>Created At</th>
 {#                    <th>Updated At</th>#}
                     <th></th>
@@ -39,4 +39,33 @@
             </tbody>
         </table>
     </div>
+    {% if last_page > 1 %}
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{{ path('fin_expense', { 'page': 1 }) }}">
+                  <img src="" alt="First page" title="First page" />
+                </a>
+
+                <a href="{{ path('fin_expense', { 'page': previous_page }) }}">
+                  <img src="" alt="Previous page" title="Previous page" />
+                </a>
+
+                {% for page in 1..last_page %}
+                  {% if page == current_page %}
+                    {{ page }}
+                  {% else %}
+                    <a href="{{ path('fin_expense', { 'page': page }) }}">{{ page }}</a>
+                  {% endif %}
+                {% endfor %}
+
+                <a href="{{ path('fin_expense', { 'page': next_page }) }}">
+                  <img src="" alt="Next page" title="Next page" />
+                </a>
+
+                <a href="{{ path('fin_expense', { 'page': last_page }) }}">
+                  <img src="" alt="Last page" title="Last page" />
+                </a>
+            </div>
+        </div>
+      {% endif %}
 {% endblock %}
