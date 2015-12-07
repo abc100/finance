@@ -41,30 +41,42 @@
     </div>
     {% if last_page > 1 %}
         <div class="row">
-            <div class="col-md-12">
-                <a href="{{ path('fin_expense', { 'page': 1 }) }}">
-                  <img src="" alt="First page" title="First page" />
-                </a>
+            <div class="col-md-12 text-center">
+                <div class="pagination">
+{#                    <span class="previous">
+                        <a href="{{ path('fin_expense', { 'page': 1 }) }}">
+                          <img src="" alt="First page" title="First page" />
+                        </a>
+                    </span>#}
 
-                <a href="{{ path('fin_expense', { 'page': previous_page }) }}">
-                  <img src="" alt="Previous page" title="Previous page" />
-                </a>
+                    <span class="previous">
+                        <a href="{{ path('fin_expense', { 'page': previous_page }) }}">Previous
+{#                          <img src="" alt="Previous page" title="Previous page" />#}
+                        </a>
+                    </span>
 
-                {% for page in 1..last_page %}
-                  {% if page == current_page %}
-                    {{ page }}
-                  {% else %}
-                    <a href="{{ path('fin_expense', { 'page': page }) }}">{{ page }}</a>
-                  {% endif %}
-                {% endfor %}
+                    {% for page in 1..last_page %}
+                      {% if page == current_page %}
+                        <span class="page">  
+                            <a href="">{{ page }}</a>
+                        </span>
+                      {% else %}
+                        <span class="page">  
+                            <a href="{{ path('fin_expense', { 'page': page }) }}">{{ page }}</a>
+                        </span>
+                      {% endif %}
+                    {% endfor %}
 
-                <a href="{{ path('fin_expense', { 'page': next_page }) }}">
-                  <img src="" alt="Next page" title="Next page" />
-                </a>
+                    <span class="previous">
+                        <a href="{{ path('fin_expense', { 'page': next_page }) }}">Next
+    {#                      <img src="" alt="Next page" title="Next page" />#}
+                        </a>
+                    </span>
 
-                <a href="{{ path('fin_expense', { 'page': last_page }) }}">
-                  <img src="" alt="Last page" title="Last page" />
-                </a>
+{#                    <a href="{{ path('fin_expense', { 'page': last_page }) }}">
+                      <img src="" alt="Last page" title="Last page" />
+                    </a>#}
+                </div>
             </div>
         </div>
       {% endif %}
