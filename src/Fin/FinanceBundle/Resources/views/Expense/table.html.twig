@@ -1,0 +1,38 @@
+<div id="expense_table" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Sum</th>
+                <th width="40%">Description</th>
+                <th>Created At</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('fin_expense_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.sum }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    {%include 'FinFinanceBundle:Common:actions.html.twig' with {'entity': entity} %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {%include 'FinFinanceBundle:Common:pagination.html.twig' 
+        with {
+                'last_page' : last_page,
+                'previous_page' : previous_page,
+                'current_page' : current_page,
+                'next_page' : next_page,
+                'total_count' : total_count
+            }
+    %}
+</div>

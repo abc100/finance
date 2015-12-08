@@ -9,7 +9,7 @@ fin_expense_create:
     
 fin_expense:
     path:     /{page}
-    defaults: { _controller: "FinFinanceBundle:Expense:index", page: 1 }
+    defaults: { _controller: "FinFinanceBundle:Expense:index", page: '' }
 
 fin_expense_show:
     path:     /{id}/show
