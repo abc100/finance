@@ -17,10 +17,13 @@ class ExpenseType extends AbstractType
         $builder
             ->add('name')
             ->add('sum')
+//            ->add('created_at')
+//            ->add('updated_at')
+            ->add('expense_item', 'entity', array (
+                'class' => 'FinFinanceBundle:ExpenseItem',
+            ))
+//            ->add('expense_item')
             ->add('description')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('expense_item')
         ;
     }
     
